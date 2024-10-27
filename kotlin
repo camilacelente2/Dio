@@ -1,0 +1,28 @@
+fun main() {
+    // Solicita o valor bruto do salário e os benefícios adicionais
+    print("Digite o valor bruto do salário: R$ ")
+    val salarioBruto = readLine()!!.toDouble()
+
+    print("Digite o valor dos benefícios adicionais: R$ ")
+    val beneficios = readLine()!!.toDouble()
+
+    // Calcula o imposto de acordo com as alíquotas
+    val imposto = calcularImposto(salarioBruto)
+
+    // Calcula o salário líquido
+    val salarioLiquido = salarioBruto + beneficios - imposto
+
+    // Exibe o salário a ser transferido
+    println("O salário a ser transferido para o funcionário é: R$ %.2f".format(salarioLiquido))
+}
+
+fun calcularImposto(salario: Double): Double {
+    val aliquota = when {
+        salario <= 1100.00 -> 0.05 // 5%
+        salario <= 2500.00 -> 0.10 // 10%
+        else -> 0.15 // 15%
+    }
+
+    // Calcula o valor do imposto
+    return salario * aliquota
+}

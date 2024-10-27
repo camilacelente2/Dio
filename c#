@@ -1,0 +1,46 @@
+using System;
+
+class Program
+{
+    // Método para calcular o salário transferido
+    static double CalcularSalarioTransferido(double valorBruto, double adicionalBeneficios)
+    {
+        double percentualImposto = CalcularImposto(valorBruto);
+        double imposto = valorBruto * percentualImposto;
+        return (valorBruto - imposto) + adicionalBeneficios;
+    }
+
+    // Método para calcular a alíquota de imposto com base no valor bruto
+    static double CalcularImposto(double valorBruto)
+    {
+        if (valorBruto <= 1100.00)
+        {
+            return 0.05; // 5%
+        }
+        else if (valorBruto <= 2500.00)
+        {
+            return 0.10; // 10%
+        }
+        else
+        {
+            return 0.15; // 15%
+        }
+    }
+
+    static void Main(string[] args)
+    {
+        // Recebe o valor bruto do salário e o adicional dos benefícios
+        Console.Write("Digite o valor bruto do salário: R$ ");
+        double valorBruto = Convert.ToDouble(Console.ReadLine());
+
+        Console.Write("Digite o valor do adicional dos benefícios: R$ ");
+        double adicionalBeneficios = Convert.ToDouble(Console.ReadLine());
+
+        // Calcula o salário a ser transferido
+        double salarioTransferido = CalcularSalarioTransferido(valorBruto, adicionalBeneficios);
+
+        // Exibe o salário a ser transferido formatado com duas casas decimais
+        Console.WriteLine($"O salário a ser transferido é: R$ {salarioTransferido:F2}");
+    }
+}
+
